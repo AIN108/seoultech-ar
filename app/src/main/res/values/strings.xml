@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">itscARtest</string>
+    <string name="building_image">Building Image</string>
+
+    <!-- 건물 1 설명 -->
+    <string name="building_1_description">건물 1의 설명입니다.</string>
+
+    <!-- 건물 2 설명 -->
+    <string name="building_2_description">건물 2의 설명입니다.</string>
+
+    <!-- 추가 건물 설명... -->
+</resources>
