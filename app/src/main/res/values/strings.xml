@@ -3,10 +3,17 @@
     <string name="building_image">Building Image</string>
 
     <!-- 건물 1 설명 -->
-    <string name="building_1_description">건물 1의 설명입니다.</string>
+    <string name="building_1_description">대학본부 1번</string>
 
     <!-- 건물 2 설명 -->
-    <string name="building_2_description">건물 2의 설명입니다.</string>
+    <string name="building_2_description">다산관 2번</string>
+    <string name="building_3_description">창학관 3번</string>
 
     <!-- 추가 건물 설명... -->
+    <string name="building_7_description">테크노파크 7번</string>
+    <string name="building_34_description">도서관 34번</string>
+    <string name="building_39_description">다빈치관 39번</string>
+    <string name="building_51_description">100주년 기념관 51번</string>
+    <string name="building_60_description">미래관 60번</string>
+    <string name="building_62_description">테크노큐브 62번</string>
 </resources>

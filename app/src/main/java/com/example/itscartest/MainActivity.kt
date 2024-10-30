@@ -119,6 +119,49 @@ class MainActivity : AppCompatActivity() {
                 buildingDescription.text = getString(R.string.building_2_description)
                 resultLayout.visibility = View.VISIBLE
             }
+
+            "3" -> {
+                buildingImage.setImageResource(R.drawable.building_3)
+                buildingDescription.text = getString(R.string.building_3_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
+            "7" -> {
+                buildingImage.setImageResource(R.drawable.building_7)
+                buildingDescription.text = getString(R.string.building_7_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
+            "34" -> {
+                buildingImage.setImageResource(R.drawable.building_34)
+                buildingDescription.text = getString(R.string.building_34_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
+            "39" -> {
+                buildingImage.setImageResource(R.drawable.building_39)
+                buildingDescription.text = getString(R.string.building_39_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
+            "51" -> {
+                buildingImage.setImageResource(R.drawable.building_51)
+                buildingDescription.text = getString(R.string.building_51_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
+            "60" -> {
+                buildingImage.setImageResource(R.drawable.building_60)
+                buildingDescription.text = getString(R.string.building_60_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
+            "62" -> {
+                buildingImage.setImageResource(R.drawable.building_62)
+                buildingDescription.text = getString(R.string.building_62_description)
+                resultLayout.visibility = View.VISIBLE
+            }
+
             // 추가 건물 번호 처리...
             else -> {
                 resultLayout.visibility = View.GONE
