@@ -8,7 +8,7 @@
 - **건물 정보 표시**: 인식된 건물의 이름과 설명 제공
 - **AR 애니메이션**: 건물 인식 시 시각적 피드백
 
-## 🛠️ 기술 스택
+##  기술 스택
 
 | 구분 | 기술 |
 |------|------|
@@ -17,7 +17,7 @@
 | UI | Android View System |
 | Animation | XML Animator |
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 ```
 app/src/main/
 ├── java/com/example/itscartest/
@@ -30,16 +30,16 @@ app/src/main/
     └── layout/              # UI 레이아웃
 ```
 
-## 🚀 실행 방법
+##  실행 방법
 
 1. Android Studio에서 프로젝트 열기
 2. Gradle Sync 실행
 3. 에뮬레이터 또는 실제 기기에서 실행
 
-## 📸 스크린샷
+## 스크린샷
 
 (추후 추가 예정)
 
-## 👨‍💻 개발자
+##  개발자
 
 - GitHub: [@AIN108](https://github.com/AIN108)
