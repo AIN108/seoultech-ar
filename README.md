@@ -95,3 +95,7 @@ AIN108이 작성한 프로젝트 소스 코드는 루트 [`LICENSE`](./LICENSE)�
 ## 개발자
 
 - GitHub: [@AIN108](https://github.com/AIN108)
+
+## 포트폴리오
+
+- Notion 프로젝트: https://app.notion.com/p/2c5f6964be61809d9048c4f322fd0c13
