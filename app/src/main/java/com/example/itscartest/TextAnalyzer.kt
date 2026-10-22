@@ -45,6 +45,11 @@ class TextAnalyzer(private val onTextRecognized: (List<String>) -> Unit) : Image
         }
     }
 
+    /** ML Kit recognizer 리소스 해제 */
+    fun close() {
+        recognizer.close()
+    }
+
     companion object {
         private const val TAG = "TextAnalyzer"
     }

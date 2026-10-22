@@ -21,8 +21,7 @@
 | Language | Kotlin |
 | Camera | AndroidX CameraX |
 | Recognition | Google ML Kit Text Recognition |
-| UI | Android View System / ViewBinding |
-| Animation | XML Animator |
+| UI | Android View System (findViewById) |
 | Build | Gradle Kotlin DSL |
 
 주요 라이브러리 버전은 `app/build.gradle.kts`에서 관리합니다.
@@ -37,7 +36,6 @@ app/src/main/
 │   └── TextAnalyzer.kt      # ML Kit OCR 이미지 분석
 └── res/
     ├── drawable/            # 건물 이미지 및 UI 리소스
-    ├── animator/            # 애니메이션
     └── layout/              # UI 레이아웃
 ```
 
