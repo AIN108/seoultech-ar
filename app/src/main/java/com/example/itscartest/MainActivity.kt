@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buildingDescription: TextView
     private lateinit var closeButton: Button
     private lateinit var cameraExecutor: ExecutorService
+    private var textAnalyzer: TextAnalyzer? = null
 
     // 빌딩 목록
     private val buildings = listOf(
@@ -109,6 +111,8 @@ class MainActivity : AppCompatActivity() {
             isProcessing = false
         }
 
+        cameraExecutor = Executors.newSingleThreadExecutor()
+
         // 카메라 권한 확인
         if (allPermissionsGranted()) {
             startCamera()
@@ -117,8 +121,6 @@ class MainActivity : AppCompatActivity() {
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
             )
         }
-
-        cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -135,7 +137,12 @@ class MainActivity : AppCompatActivity() {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                // 권한이 거부된 경우 처리
+                // 권한이 거부된 경우 사유를 알리고 종료
+                Toast.makeText(
+                    this,
+                    "건물 번호 인식을 위해 카메라 권한이 필요합니다. 설정에서 권한을 허용해 주세요.",
+                    Toast.LENGTH_LONG
+                ).show()
                 finish()
             }
         }
@@ -162,8 +169,10 @@ class MainActivity : AppCompatActivity() {
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
 
-            imageAnalysis.setAnalyzer(cameraExecutor, TextAnalyzer { recognizedNumbers ->
+            val analyzer = TextAnalyzer { recognizedNumbers ->
                 runOnUiThread {
+                    // 인식 콜백이 Activity 종료 후 도착하는 경우 무시
+                    if (isFinishing || isDestroyed) return@runOnUiThread
                     if (!isProcessing && recognizedNumbers.isNotEmpty()) {
                         // 인식된 숫자들을 길이 순으로 정렬(긴 숫자 우선)
                         val sortedNumbers = recognizedNumbers.sortedByDescending { it.length }
@@ -180,7 +189,10 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-            })
+            }
+            textAnalyzer?.close()
+            textAnalyzer = analyzer
+            imageAnalysis.setAnalyzer(cameraExecutor, analyzer)
 
             try {
                 // 기존에 바인딩된 카메라가 있으면 해제
@@ -206,6 +218,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+        textAnalyzer?.close()
     }
 
     companion object {
