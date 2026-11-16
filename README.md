@@ -39,6 +39,7 @@ app/src/main/
     ├── drawable-nodpi/      # 건물 이미지 (기기 밀도에 따라 확대하지 않음)
     ├── layout/              # UI 레이아웃 (activity_main.xml)
     ├── values/              # 색상·문자열·테마
+    ├── xml/                 # 백업·데이터 추출 규칙
     └── mipmap-*/            # 앱 아이콘
 ```
 
