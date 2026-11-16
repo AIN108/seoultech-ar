@@ -36,7 +36,8 @@ app/src/main/
 │   ├── Building.kt          # 건물 데이터 클래스
 │   └── TextAnalyzer.kt      # ML Kit OCR 이미지 분석
 └── res/
-    ├── drawable/            # 건물 이미지 및 UI 리소스
+    ├── drawable/            # UI 리소스
+    ├── drawable-nodpi/      # 건물 이미지 (기기 밀도에 따라 확대하지 않음)
     ├── animator/            # 애니메이션
     └── layout/              # UI 레이아웃
 ```
@@ -78,7 +79,7 @@ ML Kit Text Recognition
 
 ## 이미지 자산
 
-`app/src/main/res/drawable/`에 캠퍼스 건물 이미지가 포함되어 있습니다. 현재 저장소 기록만으로 모든 이미지의 원 촬영자·최초 게시처·재배포 조건을 확정할 수 없어, 이미지 파일에는 루트 MIT License가 자동으로 적용된다고 간주하지 않습니다.
+`app/src/main/res/drawable-nodpi/`에 캠퍼스 건물 이미지가 포함되어 있습니다. 현재 저장소 기록만으로 모든 이미지의 원 촬영자·최초 게시처·재배포 조건을 확정할 수 없어, 이미지 파일에는 루트 MIT License가 자동으로 적용된다고 간주하지 않습니다.
 
 향후 출처를 확인할 수 있다면 `ASSET_NOTICE.md`에 이미지별 출처를 추가하면 됩니다.
 
