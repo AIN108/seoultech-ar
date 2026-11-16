@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">itscARtest</string>
     <string name="building_image">Building Image</string>
+    <string name="camera_permission_denied">건물 번호 인식을 위해 카메라 권한이 필요합니다. 설정에서 카메라 권한을 허용해 주세요.</string>
 
     <!-- 건물 1 설명 -->
     <string name="building_1_description">대학본부 1번</string>

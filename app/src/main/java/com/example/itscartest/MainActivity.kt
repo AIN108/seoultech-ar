@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -136,7 +137,8 @@ class MainActivity : AppCompatActivity() {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                // 권한이 거부된 경우 처리
+                // 권한이 거부된 경우 사유를 알리고 종료 (아무 안내 없이 앱이 닫히지 않도록)
+                Toast.makeText(this, R.string.camera_permission_denied, Toast.LENGTH_LONG).show()
                 finish()
             }
         }
