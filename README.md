@@ -24,7 +24,7 @@
 | UI | Android View System (`findViewById`) |
 | Build | Gradle Kotlin DSL |
 
-주요 라이브러리 버전은 `app/build.gradle.kts`에서 관리합니다.
+주요 라이브러리와 플러그인 버전은 `gradle/libs.versions.toml`(Gradle version catalog)에서 관리합니다.
 
 ## 프로젝트 구조
 
