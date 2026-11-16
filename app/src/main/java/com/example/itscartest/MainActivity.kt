@@ -91,6 +91,9 @@ class MainActivity : AppCompatActivity() {
 
     private var isProcessing = false // 빌딩 인식 중인지 여부
 
+    // 같은 건물 번호가 연속 프레임에서 반복될 때만 카드를 띄워 주변 숫자 오인식을 줄인다
+    private val numberMatcher = ConsecutiveMatcher(REQUIRED_CONSECUTIVE_FRAMES)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
         closeButton.setOnClickListener {
             buildingInfoCard.visibility = View.GONE
             isProcessing = false
+            numberMatcher.reset()
         }
 
         // 카메라 권한 확인
@@ -164,18 +168,20 @@ class MainActivity : AppCompatActivity() {
 
             imageAnalysis.setAnalyzer(cameraExecutor, TextAnalyzer { recognizedNumbers ->
                 runOnUiThread {
-                    if (!isProcessing && recognizedNumbers.isNotEmpty()) {
+                    if (!isProcessing) {
                         // 인식된 숫자들을 길이 순으로 정렬(긴 숫자 우선)
                         val sortedNumbers = recognizedNumbers.sortedByDescending { it.length }
-                        // 인식된 숫자 중 빌딩 목록에 있는 번호를 찾음
+                        // 인식된 숫자 중 빌딩 목록에 있는 번호를 찾음 (없는 프레임도 넣어 연속 횟수를 끊는다)
                         val detectedNumber = sortedNumbers.find { number ->
                             buildings.any { it.number == number }
                         }
-                        if (detectedNumber != null) {
-                            val building = buildings.find { it.number == detectedNumber }
+                        val confirmedNumber = numberMatcher.update(detectedNumber)
+                        if (confirmedNumber != null) {
+                            val building = buildings.find { it.number == confirmedNumber }
                             if (building != null) {
                                 displayBuildingInfo(building)
                                 isProcessing = true
+                                numberMatcher.reset()
                             }
                         }
                     }
@@ -212,6 +218,9 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+
+        // 같은 건물 번호가 이만큼 연속된 분석 프레임에서 인식되어야 카드를 띄운다
+        private const val REQUIRED_CONSECUTIVE_FRAMES = 3
     }
 }
 
