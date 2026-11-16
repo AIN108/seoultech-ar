@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buildingDescription: TextView
     private lateinit var closeButton: Button
     private lateinit var cameraExecutor: ExecutorService
+    private var textAnalyzer: TextAnalyzer? = null // onDestroy에서 ML Kit 인식기를 닫기 위해 보관
 
     // 빌딩 목록
     private val buildings = listOf(
@@ -180,7 +181,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-            })
+            }.also { textAnalyzer = it })
 
             try {
                 // 기존에 바인딩된 카메라가 있으면 해제
@@ -206,6 +207,8 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+        textAnalyzer?.close()
+        textAnalyzer = null
     }
 
     companion object {
