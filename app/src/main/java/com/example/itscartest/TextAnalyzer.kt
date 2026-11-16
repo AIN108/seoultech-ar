@@ -13,6 +13,11 @@ class TextAnalyzer(private val onTextRecognized: (List<String>) -> Unit) : Image
     private val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
     private val regex = Regex("\\d+") // 숫자만 감지
 
+    /** ML Kit 인식기의 네이티브 리소스를 해제한다. Activity가 끝날 때 호출한다. */
+    fun close() {
+        recognizer.close()
+    }
+
     override fun analyze(imageProxy: ImageProxy) {
         val mediaImage = imageProxy.image
         if (mediaImage != null) {
