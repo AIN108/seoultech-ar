@@ -16,7 +16,7 @@
 
 ## 캠퍼스 건물 이미지
 
-`app/src/main/res/drawable/`에는 다음과 같은 서울과학기술대학교 캠퍼스 건물 이미지가 포함되어 있습니다.
+`app/src/main/res/drawable-nodpi/`에는 다음과 같은 서울과학기술대학교 캠퍼스 건물 이미지가 포함되어 있습니다.
 
 - `building_1.jpg`
 - `building_2.png`
